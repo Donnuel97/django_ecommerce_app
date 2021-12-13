@@ -1,0 +1,149 @@
+<div class="ecom-products-grids row mt-lg-5 mt-3">
+    {% for product in products %}
+    <div class="col-lg-3 col-6 product-incfhny mt-4">
+        <div class="product-grid2 transmitv">
+            <div class="product-image2">
+                <a href="#">
+                    <img class="thumbnail" src="{{product.imageURL}}">
+                </a>
+                <ul class="social">
+                        <li><a href="#" data-tip="Quick View"><span class="fa fa-eye"></span></a></li>
+
+                        <li><a href="#" data-tip="Add to Cart"><span class="fa fa-shopping-bag"></span></a>
+                        </li>
+                </ul>
+                <div class="transmitv single-item">
+                  <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>                
+                </div>
+            </div>
+            <div class="product-content">
+                <h3 class="title"><a href="#"<strong>{{product.name}}</strong></a></h3>
+                <span class="price">${{product.price}}</span>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+<div class="row">
+    {% for product in products %}
+    <div class="col-lg-4">
+        <img class="thumbnail" src="{{product.imageURL}}">
+        <div class="box-element product">
+            <h6><strong>{{product.name}}</strong></h6>
+            <hr>
+
+            <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+            
+            <a class="btn btn-outline-success" href="#">View</a>
+            <h4 style="display: inline-block; float: right"><strong>${{product.price}}</strong></h4>
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+
+ 
+
+        <div class="col-md-12">
+          <div class="border p-4 rounded" role="alert">
+            
+          </div>
+        </div>
+      </div>
+ 
+        <div class="col-md-6 mb-5 mb-md-0 box-element" id="form-wrapper">
+          <form id="form">
+
+          
+              <div id="user-info p-3 p-lg-5 border">
+                  <h2 class="h3 mb-3 text-black">User info</h2>
+                  <div class="form-group form-field">
+                      <input required class="form-control" type="text" name="name" placeholder="Name..">
+                  </div>
+                  <div class="form-group form-field">
+                      <input required class="form-control" type="email" name="email" placeholder="Email..">
+                  </div>
+              </div>
+              <h2 class="h3 mb-3 text-black">Billing Details</h2>
+              
+              <div class="p-3 p-lg-5 border" id="shipping-info">
+                  
+                      <div class="form-group form-field">
+                      <input class="form-control" type="text" name="state" placeholder="State..">
+                      </div>
+      
+                      <div class="form-group row form-field">
+                      <div class="col-md-12">
+                          <input class="form-control" type="text" name="address" placeholder="Address..">
+                      </div>
+                      </div>
+      
+                      <div class="form-group form-field">                
+                          <input class="form-control" type="text" name="city" placeholder="City..">                         
+                      </div>
+      
+                      <div class="form-group form-field">
+                      <input class="form-control" type="text" name="zipcode" placeholder="Zip code..">
+                      </div>
+      
+                      <div class="form-group form-field">
+                      <input class="form-control" type="text" name="zipcode" placeholder="Postal_code..">
+                      </div>
+                      <input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue">
+              
+              </form>
+
+              <div class="box-element hidden" id="payment-info">
+                  <small>Paypal Options</small>
+                  <!--<button id="make-payment">Make payment</button>-->
+                  <div id="paypal-button-container"></div>
+              </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+
+         
+          
+          <div class="row mb-5">
+            <div class="col-md-12">
+              <a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
+              <div class="p-3 p-lg-5 border">                
+              <h3>Order Summary</h3>
+                      
+                <table class="table site-block-order-table mb-5">
+                  <thead>
+                      
+                      <th>Product</th>
+                      <th>Quantity</th>
+                      <th>Total</th>
+                  </thead>
+                  <tbody>
+                  {% for item in items %}
+                    <tr>
+                      
+                      <td><div style="flex:2"><p>{{item.product.name}}</p></div></td>
+                      <td><strong class="mx-2"><div style="flex:1"><p>{{item.quantity}}</p></div></strong></td>
+                      <td><div style="flex:1"><p>${{item.product.price|floatformat:2}}</p></div></td>                       					
+                    </tr>
+                  {% endfor %}
+                  
+                  </tbody>
+                  
+              </table>
+              <h5>Items:   {{order.get_cart_items}}</h5>
+              <h5>Total:   ${{order.get_cart_total|floatformat:2}}</h5>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- </form> -->
+    </div>
+  </div>
